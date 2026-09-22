@@ -19,14 +19,16 @@ let package = Package(
 
         .target(
             name: "Networking",
-            dependencies: ["DomainContracts"]
+            dependencies: ["DomainContracts"],
+            exclude: ["CLAUDE.md"]
         ),
 
         .target(name: "DesignSystem"),
 
         .target(
             name: "TasksFeature",
-            dependencies: ["DomainContracts", "DesignSystem"]
+            dependencies: ["DomainContracts", "DesignSystem"],
+            exclude: ["CLAUDE.md"]
         ),
 
         .target(
