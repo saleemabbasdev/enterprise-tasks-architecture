@@ -6,6 +6,7 @@ import TasksFeature
 /// The Composition Root. This is the one place in the app allowed to know
 /// about concrete infrastructure (URLSessionAPIClient, RemoteTaskRepository,
 /// OSLogger). Everything downstream only sees protocols from DomainContracts.
+@MainActor
 struct AppContainer {
     let taskRepository: any TaskRepository
     let logger: any Logging
@@ -28,7 +29,6 @@ struct AppContainer {
         )
     }
 
-    @MainActor
     func makeTasksViewModel() -> TasksViewModel {
         let viewModel = TasksViewModel(repository: taskRepository, logger: logger)
         viewModel.onEvent = { [coordinator] event in
